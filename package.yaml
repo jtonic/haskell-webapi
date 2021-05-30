@@ -1,0 +1,84 @@
+name:                haskell-webapi
+version:             0.1.0.0
+homepage:            https://github.com/jtonic/haskell-webapi#readme
+license:             BSD3
+author:              Antonel-Ernest Pazargic
+maintainer:          antonel.pazargic@gmail.com
+copyright:           2021 Antonel-Ernest Pazargic
+category:            Web
+extra-source-files:
+- README.md
+- data/test.db
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+- -Wempty-enumerations
+- -XTypeApplications
+- -Wincomplete-patterns
+- -XGADTs
+- -XLambdaCase
+- -XNegativeLiterals
+- -XFlexibleContexts
+- -Wno-missing-signatures
+- -Wno-unused-local-binds
+- -Wno-type-defaults
+
+dependencies:
+- base >= 4.7 && < 5
+- base-compat-batteries
+- text
+- bytestring
+- string-interpolate
+- containers
+- http-client
+- servant
+- servant-client
+- servant-server
+- sqlite-simple
+- directory
+- wai
+- warp
+- mtl
+- http-media
+- time
+- string-conversions
+- aeson
+- attoparsec
+- filepath
+- extra
+
+# The library contains all of our application code.
+# The executable defined below is just a thin wrapper.
+library:
+  source-dirs: src
+
+# Runnable executable for our application
+executables:
+  haskell-webapi:
+    source-dirs: app
+    main: Main.hs
+    dependencies:
+    - haskell-webapi
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
+
+# Test suite
+tests:
+  haskell-webapi-test:
+    source-dirs: test
+    main: Main.hs
+    dependencies:
+    - haskell-webapi
+    - hspec
+    - tasty
+    - tasty-hspec
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
