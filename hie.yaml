@@ -1,0 +1,10 @@
+cradle:
+  stack:
+    - path: "./main/"
+      component: "haskell-webapi:exe:haskell-webapi"
+    - path: "./src/"
+      component: "haskell-webapi:lib"
+    - path: "./test/"
+      component: "haskell-webapi:test:haskell-webapi-test"
+    - path: "./Setup.hs"
+      component: "Cabal"
